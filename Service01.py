@@ -79,8 +79,6 @@ if __name__ == '__main__':
     conf = SparkConf().setMaster("local").setAppName("APP")
     sc = SparkContext(conf=conf)
     print("----------------------------------------")
-    print("---------------111-------------------")
-    print("---------------222-------------------")
     aa()
     ab()
     # ac()
