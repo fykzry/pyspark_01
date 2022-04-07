@@ -1,20 +1,22 @@
 
 from pyspark import SparkConf, SparkContext
-
+conf = SparkConf.setMaster("local").setAppName("app")
+sc = SparkConf(conf = conf)
 # 编程01：
 # 已知：list01 = ["My name is John", "How are you"]
 # （1）请编程计算list01中各个元素的长度。输出格式：[15, 11]
 # （2）请编程计算list01中各个元素中各个单词的长度。输出格式：
 # [(‘My’, 2), (‘name’, 4), (‘is’, 2), (‘John’, 4), (‘How’, 3), (‘are’, 3), (‘you’, 3)]
 
-# def a():
+
+
 
 
 # 编程02：
 # 已知：numList = [[1, 3], [2, 4], [3, 5], [4, 6]]
 # 请编程输出： [(1, 30), (2, 40), (3, 50), (4, 60)]
 
-# def b():
+
 
 
 # 编程03：
@@ -22,7 +24,7 @@ from pyspark import SparkConf, SparkContext
 # 输出格式 ：[‘李四, 旷课’,  ‘小明, 旷课’]
 
 
-# def c():
+
 
 # 编程04：
 # （1）创建一个文件夹，然后用VSCode打开该文件夹
@@ -32,20 +34,19 @@ from pyspark import SparkConf, SparkContext
 # （5）如果要把你写的代码传给你同学或者上传到github，接下来该怎么做？
 
 
-# def d():
+
 
 # 编程05：
 # sales.csv文件中是某小型超市的销售记录。请编程：找出销售量排名前3的商品及其销售数量。
 # 输出格式：[('日记本', 25), ('笔芯', 20), ('啤酒', 12)]
 
-# def e():
+
 
 
 # 编程06：
 # 已知：list01= [10, 11, 12, 13, 14, 15],
 # 请编程找出该列表中的偶数并仍以列表返回，同时通过累加器变量返回偶数的个数
 
-# def g():
 
 
 # 编程07：
@@ -56,5 +57,5 @@ from pyspark import SparkConf, SparkContext
 # [('张三', '92', '优秀'), ('李四', '62', '及格'), ('王五', '79', '中等'), ('赵柳', '55', '不及格')]4745416
 
 
-# def h():
+
 
