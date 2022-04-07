@@ -3,17 +3,21 @@
 # （1）请编程计算list01中各个元素的长度。输出格式：[15, 11]
 # （2）请编程计算list01中各个元素中各个单词的长度。输出格式：
 # [(‘My’, 2), (‘name’, 4), (‘is’, 2), (‘John’, 4), (‘How’, 3), (‘are’, 3), (‘you’, 3)]
+from pyspark import SparkConf, SparkContext
 
-def aa():
-    list01 = ["My name is John", "How are you"]
-    rdd = sc.parallelize(list01)
-    # 分别取出两个元素并分别求每个元素的长度
-    rdd_map = rdd.map(lambda a: len(a))
-    print(rdd_map.collect())
-    # 将每一个元素里的字符串按空格分开
-    rdd_flatmap = rdd.flatMap(lambda x: x.split(" "))
-    rdd1 = rdd_flatmap.map(lambda a: (a, len(a)))
-    print(rdd1.collect())
+conf = SparkConf().setMaster("local[*]").setAppName("app")
+sc=SparkContext(conf=conf)
+
+
+list01 = ["My name is John", "How are you"]
+rdd = sc.parallelize(list01)
+# 分别取出两个元素并分别求每个元素的长度
+rdd_map = rdd.map(lambda a: len(a))
+print(rdd_map.collect())
+# 将每一个元素里的字符串按空格分开
+rdd_flatmap = rdd.flatMap(lambda x: x.split(" "))
+rdd1 = rdd_flatmap.map(lambda a: (a, len(a)))
+print(rdd1.collect())
 
 
 # 编程02：
@@ -21,6 +25,7 @@ def aa():
 # 请编程输出： [(1, 30), (2, 40), (3, 50), (4, 60)]
 
 def ab():
+    # print("-------------")
     numList = [[1, 3], [2, 4], [3, 5], [4, 6]]
     # 创建rdd对象
     rdd = sc.parallelize(numList)
@@ -67,12 +72,13 @@ def af():
     s = sc.accumulator(0)
     list01 = [10, 11, 12, 13, 14, 15]
     rdd = sc.parallelize(list01)
-    rdd_filter = rdd.filter(lambda x:x%2==0)
-    print(rdd_filter.collect())
-    def sum(n):
-        if n % 2 == 0:
-            s.add(n)
-        return True
+    rdd_filter = rdd.filter(lambda x: x % 2 == 0).collect()
+    sum1 = 0
+    for i in rdd_filter:
+        sum1 = sum1 + 1
+    print(rdd_filter)
+    print(sum1)
+
 
 
 
@@ -88,14 +94,14 @@ def ag():
     print()
 
 
-from pyspark import SparkConf, SparkContext
+
 
 if __name__ == '__main__':
-    conf = SparkConf().setMaster("local").setAppName("APP")
-    sc = SparkContext(conf=conf)
-    print("---------------aaa-------------------------")
+    # conf = SparkConf().setMaster("local").setAppName("APP")
+    # sc = SparkContext(conf=conf)
+    print("------------------02------------------")
     # aa()
-    # ab()
+    ab()
     # ac()
     # ad()
     # ae()
