@@ -8,13 +8,12 @@ def aa():
     list01 = ["My name is John", "How are you"]
     rdd = sc.parallelize(list01)
     # 分别取出两个元素并分别求每个元素的长度
-    rdd_map=rdd.map(lambda a:len(a))
+    rdd_map = rdd.map(lambda a: len(a))
     print(rdd_map.collect())
     # 将每一个元素里的字符串按空格分开
-    rdd_flatmap = rdd.flatMap(lambda x:x.split(" "))
-    rdd1 = rdd_flatmap.map(lambda a: (a,len(a)))
+    rdd_flatmap = rdd.flatMap(lambda x: x.split(" "))
+    rdd1 = rdd_flatmap.map(lambda a: (a, len(a)))
     print(rdd1.collect())
-
 
 
 # 编程02：
@@ -24,10 +23,11 @@ def aa():
 def ab():
     numList = [[1, 3], [2, 4], [3, 5], [4, 6]]
     # 创建rdd对象
-    rdd= sc.parallelize(numList)
+    rdd = sc.parallelize(numList)
     # 取出每一个元素   map     然后取每一个元素  然后再对每一个元素取出x[0]和x[1]位置的元素
-    rdd_flatmap = rdd.map(lambda x:(x[0],x[1]*10))
+    rdd_flatmap = rdd.map(lambda x: (x[0], x[1] * 10))
     print(rdd_flatmap.collect())
+
 
 # 编程03：
 # 已知：今天（today.csv）和昨天(yesterday.csv)的点名册。请编程找出：今天和昨天都旷课的学生。
@@ -37,6 +37,8 @@ def ab():
 def ac():
     # 分别读取这两个文件，创建两个文件对象，然后取交集   intersection
     print()
+
+
 # 编程04：
 # （1）创建一个文件夹然后用VSCode打开该文件夹
 # （2）创建一个虚拟环境，并激活该虚拟环境
@@ -47,6 +49,8 @@ def ac():
 
 def ad():
     print()
+
+
 # 编程05：
 # sales.csv文件中是某小型超市的销售记录。请编程：找出销售量排名前3的商品及其销售数量。
 # 输出格式：[('日记本', 25), ('笔芯', 20), ('啤酒', 12)]
@@ -54,12 +58,23 @@ def ad():
 def ae():
     print()
 
+
 # 编程06：
 # 已知：list01= [10, 11, 12, 13, 14, 15],
 # 请编程找出该列表中的偶数并仍以列表返回，同时通过累加器变量返回偶数的个数
 
 def af():
-    print()
+    s = sc.accumulator(0)
+    list01 = [10, 11, 12, 13, 14, 15]
+    rdd = sc.parallelize(list01)
+    rdd_filter = rdd.filter(lambda x:x%2==0)
+    print(rdd_filter.collect())
+    def sum(n):
+        if n % 2 == 0:
+            s.add(n)
+        return True
+
+
 
 # 编程07：
 # 已知：
@@ -79,10 +94,10 @@ if __name__ == '__main__':
     conf = SparkConf().setMaster("local").setAppName("APP")
     sc = SparkContext(conf=conf)
     print("---------------aaa-------------------------")
-    aa()
-    ab()
+    # aa()
+    # ab()
     # ac()
     # ad()
     # ae()
-    # af()
+    af()
     # ag()
