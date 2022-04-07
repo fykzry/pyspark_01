@@ -1,3 +1,6 @@
+
+from pyspark import SparkConf, SparkContext
+
 # 编程01：
 # 已知：list01 = ["My name is John", "How are you"]
 # （1）请编程计算list01中各个元素的长度。输出格式：[15, 11]
@@ -55,4 +58,3 @@
 
 # def h():
 
-from pyspark import SparkConf, SparkContext
